@@ -16,17 +16,9 @@ send -- "$senha\r"
 expect -exact "\*>"
 send -- "sys\r"
 expect -exact "\*]"
-send -- "lldp enable\r"
+send -- "lldp enable\r q\r"
 
-expect {
-        "\*More\*" {
-                send " "
-                exp_continue
-                sleep 1
-        }
-        "\*>"{
-                send -- "quit\r"
-                send -- "y\r"
-                sleep 1
-        }
-}
+expect -exact "\*>"
+send -- "quit\r"
+send -- "y\r"
+      
